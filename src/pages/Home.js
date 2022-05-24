@@ -19,7 +19,6 @@ export default class Home extends React.Component {
           <input
             type="text"
             placeholder="digite sua busca"
-            // onChange={ () => this.isEmpty(e) }
           />
           {initMessage}
           <p
