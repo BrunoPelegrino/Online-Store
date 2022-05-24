@@ -5,6 +5,8 @@ import Cart from './pages/Cart';
 
 import './App.css';
 
+// requisito
+
 class App extends React.Component {
   render() {
     return (

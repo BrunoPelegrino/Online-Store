@@ -6,6 +6,7 @@ export default class Home extends React.Component {
       initMessage: '',
     }
 
+    // requisito 03
     render() {
       const { initMessage } = this.state;
       return (

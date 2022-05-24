@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default class Cart extends React.Component {
+  // requisito 03
   render() {
     return (
       <div>
