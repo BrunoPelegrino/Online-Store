@@ -1,16 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Home extends React.Component {
     state = {
       initMessage: '',
     }
-
-    // isEmpty({ target }) {
-    //   const { value } = target;
-    //   if(value.length > 0){
-
-    //   }
-    // }
 
     render() {
       const { initMessage } = this.state;
@@ -21,12 +15,10 @@ export default class Home extends React.Component {
             placeholder="digite sua busca"
           />
           {initMessage}
-          <p
-            data-testid="home-initial-message"
-          >
+          <h1 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
-
-          </p>
+          </h1>
+          <Link data-testid="shopping-cart-button" to="/Cart">Carrinho</Link>
         </div>
       );
     }
