@@ -23,8 +23,6 @@ export default class Home extends React.Component {
 
     searchProducts = async () => {
       const { product, categoryId } = this.state;
-      console.log(product);
-      console.log(categoryId);
       const productsAPI = await getProductsFromCategoryAndQuery(categoryId, product);
       console.log(productsAPI);
       this.setState({ productsList: productsAPI.results });
@@ -75,6 +73,7 @@ export default class Home extends React.Component {
                   />))
               )}
           </main>
+
           <aside className="categories">
             <Categories onClick={ this.handleChangeCategory } />
           </aside>

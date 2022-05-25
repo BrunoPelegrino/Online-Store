@@ -21,12 +21,13 @@ class Categories extends React.Component {
           <div className="category" key={ category.name }>
             <label
               data-testid="category"
-              htmlFor="category"
+              htmlFor={ category.id }
               name="category"
             >
               {category.name}
               <input
                 type="radio"
+                id={ category.id }
                 value={ category.id }
                 name="category"
                 onClick={ onClick }

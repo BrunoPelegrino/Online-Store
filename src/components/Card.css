@@ -1,19 +1,19 @@
 .Card {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  max-width: 200px;
 }
 
 .Card p{
-    font-size: 18px;
-    max-width: 150px;
+  font-size: 18px;
+  max-width: 150px;
 }
 
 .Card img {
-    width: 70px;
+  width: 70px;
 }
 
-.Card span{
-    color: red;
+.Card span {
+  color: red;
 }
