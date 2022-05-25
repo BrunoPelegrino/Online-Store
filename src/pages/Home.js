@@ -70,6 +70,7 @@ export default class Home extends React.Component {
                     name={ product.title }
                     image={ product.thumbnail }
                     price={ product.price }
+                    id={ product.id }
                   />))
               )}
           </main>
