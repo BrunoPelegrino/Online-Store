@@ -1,17 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Home extends React.Component {
     state = {
       initMessage: '',
     }
 
-    // isEmpty({ target }) {
-    //   const { value } = target;
-    //   if(value.length > 0){
-
-    //   }
-    // }
-
+    // requisito 03
     render() {
       const { initMessage } = this.state;
       return (
@@ -19,15 +14,12 @@ export default class Home extends React.Component {
           <input
             type="text"
             placeholder="digite sua busca"
-            // onChange={ () => this.isEmpty(e) }
           />
           {initMessage}
-          <p
-            data-testid="home-initial-message"
-          >
+          <h1 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
-
-          </p>
+          </h1>
+          <Link data-testid="shopping-cart-button" to="/Cart">Carrinho</Link>
         </div>
       );
     }
