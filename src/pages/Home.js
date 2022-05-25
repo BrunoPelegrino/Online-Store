@@ -8,6 +8,7 @@ export default class Home extends React.Component {
     state = {
       productsList: [],
       product: '',
+      categoryId: '',
     }
 
     handleChange = ({ target }) => {
@@ -15,56 +16,67 @@ export default class Home extends React.Component {
       this.setState({ product: value });
     }
 
+    handleChangeCategory = ({ target }) => {
+      const { value } = target;
+      this.setState({ categoryId: value, product: '' }, () => this.searchProducts());
+    }
+
     searchProducts = async () => {
-      const { product } = this.state;
-      const productsAPI = await getProductsFromCategoryAndQuery(product);
+      const { product, categoryId } = this.state;
+      const productsAPI = await getProductsFromCategoryAndQuery(categoryId, product);
       console.log(productsAPI);
       this.setState({ productsList: productsAPI.results });
     }
 
     render() {
       const { productsList } = this.state;
-      console.log(productsList);
       return (
         <div>
-          <input
-            type="text"
-            placeholder="digite sua busca"
-            onChange={ this.handleChange }
-            data-testid="query-input"
-          />
-          <button
-            data-testid="query-button"
-            type="button"
-            onClick={ this.searchProducts }
-          >
-            Pesquisar
-          </button>
-
-          {productsList.length === 0 && (
-            <p
-              data-testid="home-initial-message"
+          <header className="searchInputs">
+            <input
+              type="text"
+              placeholder="digite sua busca"
+              onChange={ this.handleChange }
+              data-testid="query-input"
+            />
+            <button
+              data-testid="query-button"
+              type="button"
+              onClick={ this.searchProducts }
             >
-              Digite algum termo de pesquisa ou escolha uma categoria.
+              Pesquisar
+            </button>
+            <Link data-testid="shopping-cart-button" to="/Cart">Carrinho</Link>
+          </header>
 
-            </p>
-          )}
-          {productsList.length === 0 ? (
-            <p>
-              Nenhum produto foi encontrado.
-            </p>
-          )
-            : (
-              productsList.map((product, key) => (
-                <Card
-                  key={ key }
-                  name={ product.title }
-                  image={ product.thumbnail }
-                  price={ product.price }
-                />))
+          <main className="productsList">
+            {productsList.length === 0 && (
+              <p
+                data-testid="home-initial-message"
+              >
+                Digite algum termo de pesquisa ou escolha uma categoria.
+
+              </p>
             )}
-          <Link data-testid="shopping-cart-button" to="/Cart">Carrinho</Link>
-          <Categories />
+            {productsList.length === 0 ? (
+              <p>
+                Nenhum produto foi encontrado.
+              </p>
+            )
+              : (
+                productsList.map((product, key) => (
+                  <Card
+                    key={ key }
+                    name={ product.title }
+                    image={ product.thumbnail }
+                    price={ product.price }
+                  />))
+              )}
+          </main>
+
+          <aside className="categories">
+            <Categories onClick={ this.handleChangeCategory } />
+          </aside>
         </div>
       );
     }
