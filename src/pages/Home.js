@@ -9,6 +9,11 @@ export default class Home extends React.Component {
       productsList: [],
       product: '',
       categoryId: '',
+      cartItems: [],
+    }
+
+    addToCart = () => {
+      console.log("addToCart");
     }
 
     handleChange = ({ target }) => {
@@ -71,6 +76,7 @@ export default class Home extends React.Component {
                     image={ product.thumbnail }
                     price={ product.price }
                     id={ product.id }
+                    handleClick= { this.addToCart }
                   />))
               )}
           </main>
