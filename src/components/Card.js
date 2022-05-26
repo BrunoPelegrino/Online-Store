@@ -16,7 +16,7 @@ class Card extends React.Component {
           <span>{ price }</span>
         </Link>
         <button
-          onClick={ handleClick }
+          onClick={ () => handleClick(name, image, price) }
           data-testid="product-add-to-cart"
           type="button"
         >

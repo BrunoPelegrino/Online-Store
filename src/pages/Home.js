@@ -12,8 +12,14 @@ export default class Home extends React.Component {
       cartItems: [],
     }
 
-    addToCart = () => {
-      console.log("addToCart");
+    addToCart = (name, image, price) => {
+      console.log(name, image, price);
+      this.setState((prevState) => (
+        { cartItems: [...prevState.cartItems, { name, image, price }] }
+      ), () => {
+        const { cartItems } = this.state;
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      });
     }
 
     handleChange = ({ target }) => {
@@ -76,7 +82,7 @@ export default class Home extends React.Component {
                     image={ product.thumbnail }
                     price={ product.price }
                     id={ product.id }
-                    handleClick= { this.addToCart }
+                    handleClick={ this.addToCart }
                   />))
               )}
           </main>
