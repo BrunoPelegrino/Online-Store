@@ -12,6 +12,7 @@ export default class Cart extends React.Component {
 
   render() {
     const { cartItems } = this.state;
+    console.log(cartItems);
     return (
       <div>
         {(!cartItems || cartItems.length === 0)
@@ -19,7 +20,6 @@ export default class Cart extends React.Component {
             <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>)
           : (
             <div>
-              <p data-testid="shopping-cart-product-quantity">{ cartItems.length }</p>
               {cartItems.map((cartItem, index) => (
                 <div
                   key={ index }
@@ -28,6 +28,11 @@ export default class Cart extends React.Component {
                   <p data-testid="shopping-cart-product-name">{ cartItem.name }</p>
                   <img src={ cartItem.image } alt="produto" />
                   <span>{ cartItem.price }</span>
+                  <p
+                    data-testid="shopping-cart-product-quantity"
+                  >
+                    { cartItem.quantify }
+                  </p>
                 </div>
               ))}
             </div>
