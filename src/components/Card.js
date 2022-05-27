@@ -4,19 +4,25 @@ import { Link } from 'react-router-dom';
 
 class Card extends React.Component {
   render() {
-    const { name, price, image, id } = this.props;
+    const { name, price, image, id, handleClick } = this.props;
     return (
-      <Link to={ `/details/${id}` } data-testid="product-detail-link">
-        <div
-          // key={ key }
-          className="Card"
-          data-testid="product"
-        >
+      <div
+        className="Card"
+        data-testid="product"
+      >
+        <Link to={ `/details/${id}` } data-testid="product-detail-link">
           <p>{ name }</p>
           <img src={ image } alt="produto" />
           <span>{ price }</span>
-        </div>
-      </Link>
+        </Link>
+        <button
+          onClick={ () => handleClick(name, image, price) }
+          data-testid="product-add-to-cart"
+          type="button"
+        >
+          Adicionar ao Carrinho
+        </button>
+      </div>
     );
   }
 }
@@ -25,8 +31,8 @@ Card.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
-  // key: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default Card;
