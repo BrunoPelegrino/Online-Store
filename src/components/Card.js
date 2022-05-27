@@ -6,17 +6,21 @@ class Card extends React.Component {
   render() {
     const { name, price, image, id } = this.props;
     return (
-      <Link to={ `/details/${id}` } data-testid="product-detail-link">
-        <div
+      <div>
+        <Link to={ `/details/${id}` } data-testid="product-detail-link">
+          <div
           // key={ key }
-          className="Card"
-          data-testid="product"
-        >
-          <p>{ name }</p>
-          <img src={ image } alt="produto" />
-          <span>{ price }</span>
-        </div>
-      </Link>
+            className="Card"
+            data-testid="product"
+          >
+            <p>{ name }</p>
+            <img src={ image } alt="produto" />
+            <span>{ price }</span>
+          </div>
+
+        </Link>
+
+      </div>
     );
   }
 }
