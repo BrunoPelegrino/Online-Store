@@ -11,6 +11,7 @@ export default class Home extends React.Component {
       categoryId: '',
     }
 
+    // requisito 08
     addToCart = (name, image, price, id) => {
       const product = { name, image, price, quantify: 1, id };
       const getCartProducts = JSON.parse(localStorage.getItem('cartItems'));
