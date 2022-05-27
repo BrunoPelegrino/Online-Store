@@ -9,17 +9,27 @@ export default class Home extends React.Component {
       productsList: [],
       product: '',
       categoryId: '',
-      cartItems: [],
     }
 
-    addToCart = (name, image, price) => {
-      console.log(name, image, price);
-      this.setState((prevState) => (
-        { cartItems: [...prevState.cartItems, { name, image, price }] }
-      ), () => {
-        const { cartItems } = this.state;
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-      });
+    addToCart = (name, image, price, id) => {
+      const product = { name, image, price, quantify: 1, id };
+      const getCartProducts = JSON.parse(localStorage.getItem('cartItems'));
+      if (!getCartProducts) {
+        localStorage.setItem('cartItems', JSON.stringify([product]));
+      }
+      if (getCartProducts) {
+        const obj = getCartProducts.find((item) => item.id === id);
+        if (obj) {
+          const newCartItems = getCartProducts.filter((item) => item.id !== id);
+          const quantify = obj.quantify + 1;
+          obj.quantify = quantify;
+          newCartItems.push(obj);
+          localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+        } else {
+          localStorage
+            .setItem('cartItems', JSON.stringify([...getCartProducts, product]));
+        }
+      }
     }
 
     handleChange = ({ target }) => {
