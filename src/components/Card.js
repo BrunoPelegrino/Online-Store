@@ -6,31 +6,25 @@ class Card extends React.Component {
   render() {
     const { name, price, image, id } = this.props;
     return (
-      <div>
+      <div
+        className="Card"
+        data-testid="product"
+      >
         <Link to={ `/details/${id}` } data-testid="product-detail-link">
-          <div
-          // key={ key }
-            className="Card"
-            data-testid="product"
-          >
-            <p>{ name }</p>
-            <img src={ image } alt="produto" />
-            <span>{ price }</span>
-          </div>
-
+          <p data-testid="shopping-cart-product-name">{ name }</p>
+          <img src={ image } alt="produto" />
+          <span>{ price }</span>
         </Link>
 
       </div>
     );
   }
 }
-
 Card.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
-  // key: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
-};
 
+};
 export default Card;

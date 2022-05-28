@@ -1,40 +1,45 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { getCartItem } from '../services/storageItems';
 
 export default class Cart extends React.Component {
-state = {
-  productItem: [],
-  isEmpty: true,
-  amount: 1,
-}
+  state = {
+    cartItems: [],
+  }
 
-componentDidMount() {
-  this.checkedLocalStorage();
-}
+  async componentDidMount() {
+    const getCartProducts = await getCartItem();
+    if (!getCartProducts) this.setState([]);
+    this.setState({ cartItems: getCartProducts });
+  }
 
-checkedLocalStorage = async () => {
-  // const { productItem } = this.state;
-  const items = await getCartItem();
-  console.log(items.title);
-  if (items.length !== 0) this.setState({ productItem: items, isEmpty: false });
-}
+  render() {
+    const { cartItems } = this.state;
+    return (
+      <div>
+        <Link to="/">Home</Link>
 
-render() {
-  const { productItem, isEmpty, amount } = this.state;
-  return (
-    <div>
-      {!isEmpty
-        ? (productItem.map((item) => (
-          <div key={ item }>
-            <h2 data-testid="shopping-cart-product-name">{ item.title }</h2>
-            <h3>{ item.price }</h3>
-            <h3 data-testid="shopping-cart-product-quantity">{ amount }</h3>
-
-          </div>
-        ))
-        )
-        : (<h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>)}
-    </div>
-  );
-}
+        {(!cartItems || cartItems.length === 0)
+          ? (
+            <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>)
+          : (
+            <div>
+              {cartItems.map((cartItem, index) => (
+                <div
+                  key={ index }
+                  className="cartItem"
+                >
+                  <p data-testid="shopping-cart-product-name">{ cartItem.name }</p>
+                  <img src={ cartItem.thumbnail } alt="produto" />
+                  <span>{ cartItem.price }</span>
+                  <p data-testid="shopping-cart-product-quantity">
+                    { cartItem.quantify }
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+      </div>
+    );
+  }
 }

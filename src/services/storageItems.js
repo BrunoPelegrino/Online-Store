@@ -1,9 +1,8 @@
-export function saveCartItem = (saveItem) => {
-  localStorage.setItem('cartItem', JSON.stringify(saveItem));
+export function saveCartItem(saveItem) {
+  localStorage.setItem('cartItems', JSON.stringify(saveItem));
 }
 
 export function getCartItem() {
-  const savedItem = localStorage.getItem('cartItem');
-  const initialValue = JSON.parse(savedItem);
-  return initialValue;
+  const getItemsFromStorage = JSON.parse(localStorage.getItem('cartItems'));
+  return getItemsFromStorage;
 }
