@@ -11,7 +11,6 @@ export default class Home extends React.Component {
       productsList: [],
       product: '',
       categoryId: '',
-
     }
 
 handleChange = ({ target }) => {
@@ -72,14 +71,12 @@ render() {
                   image={ product.thumbnail }
                   price={ product.price }
                   id={ product.id }
-
                 />
                 <ButonAddCart
                   name={ product.title }
                   price={ product.price }
                   thumbnail={ product.thumbnail }
                   rotuloId="product-add-to-cart"
-
                 />
               </div>
             ))

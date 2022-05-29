@@ -18,7 +18,6 @@ export default class Cart extends React.Component {
     return (
       <div>
         <Link to="/">Home</Link>
-
         {(!cartItems || cartItems.length === 0)
           ? (
             <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>)
