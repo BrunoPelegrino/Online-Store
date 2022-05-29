@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class Card extends React.Component {
   render() {
-    const { name, price, image, id, handleClick } = this.props;
+    const { name, price, image, id } = this.props;
     return (
       <div
         className="Card"
