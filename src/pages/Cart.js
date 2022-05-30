@@ -13,6 +13,14 @@ export default class Cart extends React.Component {
     this.setState({ cartItems: getCartProducts });
   }
 
+  increaseQuantify = (event) => {
+    const { name } = event.target;
+    console.log(name);
+
+    // const { cartItems } = this.state;
+    // let checkQuantify = getCartItem();
+  }
+
   render() {
     const { cartItems } = this.state;
     return (
@@ -24,17 +32,33 @@ export default class Cart extends React.Component {
             <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>)
           : (
             <div>
-              {cartItems.map((cartItem, index) => (
+              {cartItems.map(({ name, thumbnail, price, quantify }, index) => (
                 <div
                   key={ index }
                   className="cartItem"
                 >
-                  <p data-testid="shopping-cart-product-name">{ cartItem.name }</p>
-                  <img src={ cartItem.thumbnail } alt="produto" />
-                  <span>{ cartItem.price }</span>
+                  <p data-testid="shopping-cart-product-name">{ name }</p>
+                  <img src={ thumbnail } alt="produto" />
+                  <span>{ price }</span>
+                  <button
+                    type="button"
+                    name={ name }
+                    onClick={ (event) => this.increaseQuantify(event) }
+                    data-testid="product-increase-quantity"
+                  >
+                    +
+
+                  </button>
                   <p data-testid="shopping-cart-product-quantity">
-                    { cartItem.quantify }
+                    { quantify }
                   </p>
+                  <button
+                    type="button"
+                    data-testid="product-decrease-quantity"
+                  >
+                    -
+
+                  </button>
                 </div>
               ))}
             </div>
