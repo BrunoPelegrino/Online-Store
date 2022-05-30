@@ -5,6 +5,7 @@ import Card from '../components/Card';
 import Categories from '../components/Categories';
 // import { getCartItem, saveCartItem } from '../services/storageItems';
 import ButonAddCart from '../components/ButonAddCart';
+import { getCartItem } from '../services/storageItems';
 
 export default class Home extends React.Component {
   state = {
@@ -31,7 +32,6 @@ export default class Home extends React.Component {
   searchProducts = async () => {
     const { product, categoryId } = this.state;
     const productsAPI = await getProductsFromCategoryAndQuery(categoryId, product);
-    console.log(productsAPI);
     this.setState({ productsList: productsAPI.results });
   }
 
