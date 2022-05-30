@@ -52,13 +52,18 @@ export default class Details extends React.Component {
       <div>
         <div>
           <Link to="/">Home</Link>
+          <div>
+            <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
+            <p data-testid="shopping-cart-size">
+              { cartItems }
+            </p>
+          </div>
           <h1 data-testid="product-detail-name">{title}</h1>
           <img src={ thumbnail } alt={ title } />
           <span>
             Valor: R$
             {price}
           </span>
-          <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
           <ButonAddCart
             name={ title }
             price={ price }
