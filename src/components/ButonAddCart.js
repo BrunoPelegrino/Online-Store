@@ -22,6 +22,7 @@ class ButonAddCart extends React.Component {
           saveCartItem([...newProduct, { name, price, thumbnail, quantify: 1 }]);
         }
       }
+      
     }
 
     render() {
