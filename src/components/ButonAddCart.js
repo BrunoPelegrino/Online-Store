@@ -4,7 +4,7 @@ import { getCartItem, saveCartItem } from '../services/storageItems';
 
 class ButonAddCart extends React.Component {
     addToCart = () => {
-      const { name, price, thumbnail } = this.props;
+      const { name, price, thumbnail, getCartLength } = this.props;
       const getCartProducts = getCartItem();
       if (!getCartProducts) {
         saveCartItem([{ name, price, thumbnail, quantify: 1 }]);
@@ -22,7 +22,7 @@ class ButonAddCart extends React.Component {
           saveCartItem([...newProduct, { name, price, thumbnail, quantify: 1 }]);
         }
       }
-      
+      getCartLength();
     }
 
     render() {
@@ -46,4 +46,5 @@ ButonAddCart.propTypes = {
   price: PropTypes.number.isRequired,
   rotuloId: PropTypes.string.isRequired,
   thumbnail: PropTypes.string.isRequired,
+  getCartLength: PropTypes.func.isRequired,
 };

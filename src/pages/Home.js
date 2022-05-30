@@ -61,7 +61,12 @@ export default class Home extends React.Component {
           >
             Pesquisar
           </button>
-          <Link data-testid="shopping-cart-button" to="/Cart">Carrinho</Link>
+          <div>
+            <Link data-testid="shopping-cart-button" to="/Cart">Carrinho</Link>
+            {cartItems && (
+              <p data-testid="shopping-cart-size">{ cartItems }</p>
+            )}
+          </div>
         </header>
         <main className="productsList">
           {productsList.length === 0 && (
@@ -90,6 +95,7 @@ export default class Home extends React.Component {
                     price={ product.price }
                     thumbnail={ product.thumbnail }
                     rotuloId="product-add-to-cart"
+                    getCartLength={ this.getCartLength }
                   />
                 </div>
               ))
