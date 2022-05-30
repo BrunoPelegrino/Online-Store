@@ -5,12 +5,23 @@ import { getCartItem, saveCartItem } from '../services/storageItems';
 class ButonAddCart extends React.Component {
     addToCart = () => {
       const { name, price, thumbnail } = this.props;
-      const quantify = 1;
-      let getCartProducts = getCartItem();
-      if (!getCartProducts) getCartProducts = [];
-      const cartItem = [...getCartProducts, { name, price, thumbnail, quantify }];
-      // console.log('Testando:', cartItem);
-      saveCartItem(cartItem);
+      const getCartProducts = getCartItem();
+      if (!getCartProducts) {
+        saveCartItem([{ name, price, thumbnail, quantify: 1 }]);
+      }
+      if (getCartProducts) {
+        const obj = getCartProducts.find((item) => item.name === name);
+        if (obj) {
+          const newCartItems = getCartProducts.filter((item) => item.name !== name);
+          const quantify = obj.quantify + 1;
+          obj.quantify = quantify;
+          newCartItems.push(obj);
+          saveCartItem(newCartItems);
+        } else {
+          const newProduct = getCartItem();
+          saveCartItem([...newProduct, { name, price, thumbnail, quantify: 1 }]);
+        }
+      }
     }
 
     render() {
