@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getProduct } from '../services/api';
 import ButonAddCart from '../components/ButonAddCart';
 import FormComments from '../components/FormComments';
+import { getCartItem } from '../services/storageItems';
 
 export default class Details extends React.Component {
   state = {
