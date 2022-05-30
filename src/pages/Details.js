@@ -7,20 +7,45 @@ import ButonAddCart from '../components/ButonAddCart';
 export default class Details extends React.Component {
   state = {
     product: [],
+    comments: [],
+    cartItems: 0,
   }
 
   componentDidMount = async () => {
     const { match } = this.props;
     const { params } = match;
     const { id } = params;
+    this.updateComments(id);
+    this.getCartLength();
     const product = await getProduct(id);
     this.setState({
       product,
     });
   }
 
+  getCartLength = () => {
+    const cartProducts = getCartItem();
+    if (cartProducts) {
+      const cartItems = cartProducts.reduce((acc, item) => acc + item.quantify, 0);
+      this.setState({ cartItems });
+    }
+  }
+
+  // updateCartLength = () => {
+  //   const cartProducts = getCartItem();
+  //   if (cartProducts) {
+  //     const cartItems = cartProducts.reduce((acc, item) => acc + item.quantify, 0);
+  //     return cartItems;
+  //   }
+  // }
+
+  updateComments = (id) => {
+    const comments = JSON.parse(localStorage.getItem([id]));
+    this.setState({ comments });
+  }
+
   render() {
-    const { product } = this.state;
+    const { product, cartItems, comments } = this.state;
     const { title, thumbnail, price } = product;
     return (
       <div>
