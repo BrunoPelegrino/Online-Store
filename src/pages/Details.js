@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getProduct } from '../services/api';
 import ButonAddCart from '../components/ButonAddCart';
+import FormComments from '../components/FormComments';
 
 export default class Details extends React.Component {
   state = {
@@ -49,20 +50,31 @@ export default class Details extends React.Component {
     const { title, thumbnail, price } = product;
     return (
       <div>
-        <Link to="/">Home</Link>
-        <h1 data-testid="product-detail-name">{title}</h1>
-        <img src={ thumbnail } alt={ title } />
-        <span>
-          Valor: R$
-          {price}
-        </span>
-        <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
-        <ButonAddCart
-          name={ title }
-          price={ price }
-          thumbnail={ thumbnail }
-          rotuloId="product-detail-add-to-cart"
-        />
+        <div>
+          <Link to="/">Home</Link>
+          <h1 data-testid="product-detail-name">{title}</h1>
+          <img src={ thumbnail } alt={ title } />
+          <span>
+            Valor: R$
+            {price}
+          </span>
+          <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
+          <ButonAddCart
+            name={ title }
+            price={ price }
+            thumbnail={ thumbnail }
+            rotuloId="product-detail-add-to-cart"
+          />
+        </div>
+
+        <FormComments id={ product.id } updateComments={ this.updateComments } />
+        {comments && comments.map((comment) => (
+          <div key={ comment.emailUser }>
+            <span>{ comment.stars }</span>
+            <h3>{ comment.emailUser }</h3>
+            <p>{ comment.comment }</p>
+          </div>
+        ))}
       </div>
     );
   }
