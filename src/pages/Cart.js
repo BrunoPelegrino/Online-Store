@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getCartItem } from '../services/storageItems';
+import { saveCartItem, getCartItem } from '../services/storageItems';
 
 export default class Cart extends React.Component {
   state = {
@@ -15,10 +15,21 @@ export default class Cart extends React.Component {
 
   increaseQuantify = (event) => {
     const { name } = event.target;
-    console.log(name);
+    const { cartItems } = this.state;
+    const newQtd = cartItems.find((item) => item.name === name);
+    newQtd.quantify += 1;
+    this.setState({ cartItems });
+    saveCartItem(cartItems);
+  }
 
-    // const { cartItems } = this.state;
-    // let checkQuantify = getCartItem();
+  decreaseQuantify = (event) => {
+    const { name } = event.target;
+    const { cartItems } = this.state;
+    const newQtd = cartItems.find((item) => item.name === name);
+    if (newQtd.quantify === 1) return 1;
+    newQtd.quantify -= 1;
+    this.setState({ cartItems });
+    saveCartItem(cartItems);
   }
 
   render() {
@@ -53,6 +64,8 @@ export default class Cart extends React.Component {
                   </p>
                   <button
                     type="button"
+                    name={ name }
+                    onClick={ (event) => this.decreaseQuantify(event) }
                     data-testid="product-decrease-quantity"
                   >
                     -
