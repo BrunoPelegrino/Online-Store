@@ -36,14 +36,6 @@ export default class Details extends React.Component {
     }
   }
 
-  // updateCartLength = () => {
-  //   const cartProducts = getCartItem();
-  //   if (cartProducts) {
-  //     const cartItems = cartProducts.reduce((acc, item) => acc + item.quantify, 0);
-  //     return cartItems;
-  //   }
-  // }
-
   updateComments = (id) => {
     const comments = JSON.parse(localStorage.getItem([id]));
     this.setState({ comments });
