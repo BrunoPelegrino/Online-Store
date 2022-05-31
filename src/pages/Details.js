@@ -48,7 +48,7 @@ export default class Details extends React.Component {
 
   render() {
     const { product, cartItems, comments } = this.state;
-    const { title, thumbnail, price } = product;
+    const { available_quantity, title, thumbnail, price } = product;
     return (
       <div>
         <div>
@@ -69,6 +69,7 @@ export default class Details extends React.Component {
             <ButonAddCart
               name={ title }
               price={ price }
+              available_quantity={ available_quantity }
               thumbnail={ thumbnail }
               rotuloId="product-detail-add-to-cart"
               getCartLength={ this.getCartLength }

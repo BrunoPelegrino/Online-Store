@@ -93,6 +93,7 @@ export default class Home extends React.Component {
                   <ButonAddCart
                     name={ product.title }
                     price={ product.price }
+                    available_quantity={ product.available_quantity }
                     thumbnail={ product.thumbnail }
                     rotuloId="product-add-to-cart"
                     getCartLength={ this.getCartLength }
