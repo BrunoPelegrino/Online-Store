@@ -89,6 +89,7 @@ export default class Home extends React.Component {
                     image={ product.thumbnail }
                     price={ product.price }
                     id={ product.id }
+                    shipping={ product.shipping.free_shipping }
                   />
                   <ButonAddCart
                     name={ product.title }
