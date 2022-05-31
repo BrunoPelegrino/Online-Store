@@ -4,10 +4,11 @@ import { getCartItem, saveCartItem } from '../services/storageItems';
 
 class ButonAddCart extends React.Component {
     addToCart = () => {
-      const { available_quantity, name, price, thumbnail, getCartLength } = this.props;
+      const { available_quantity: availableQuantity,
+        name, price, thumbnail, getCartLength } = this.props;
       const getCartProducts = getCartItem();
       if (!getCartProducts) {
-        saveCartItem([{ available_quantity, name, price, thumbnail, quantify: 1 }]);
+        saveCartItem([{ availableQuantity, name, price, thumbnail, quantify: 1 }]);
       }
       if (getCartProducts) {
         const obj = getCartProducts.find((item) => item.name === name);
@@ -20,7 +21,7 @@ class ButonAddCart extends React.Component {
         } else {
           const newProduct = getCartItem();
           saveCartItem([
-            ...newProduct, { available_quantity, name, price, thumbnail, quantify: 1 }]);
+            ...newProduct, { availableQuantity, name, price, thumbnail, quantify: 1 }]);
         }
       }
       getCartLength();
@@ -33,6 +34,7 @@ class ButonAddCart extends React.Component {
           type="submit"
           onClick={ this.addToCart }
           data-testid={ rotuloId }
+          // avaliable_quantity={ availableQuantity }
         >
           Adicionar ao carrinho
         </button>
