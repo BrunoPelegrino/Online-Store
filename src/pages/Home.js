@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import Card from '../components/Card';
 import Categories from '../components/Categories';
-// import { getCartItem, saveCartItem } from '../services/storageItems';
 import ButonAddCart from '../components/ButonAddCart';
 import { getCartItem } from '../services/storageItems';
 
@@ -89,6 +88,7 @@ export default class Home extends React.Component {
                     image={ product.thumbnail }
                     price={ product.price }
                     id={ product.id }
+                    shipping={ product.shipping.free_shipping }
                   />
                   <ButonAddCart
                     name={ product.title }

@@ -11,6 +11,7 @@ export default class Details extends React.Component {
     product: [],
     comments: [],
     cartItems: 0,
+    shipping: false,
   }
 
   componentDidMount = async () => {
@@ -22,6 +23,7 @@ export default class Details extends React.Component {
     const product = await getProduct(id);
     this.setState({
       product,
+      shipping: product.shipping.free_shipping,
     });
     console.log(product.available_quantity);
   }
@@ -34,21 +36,13 @@ export default class Details extends React.Component {
     }
   }
 
-  // updateCartLength = () => {
-  //   const cartProducts = getCartItem();
-  //   if (cartProducts) {
-  //     const cartItems = cartProducts.reduce((acc, item) => acc + item.quantify, 0);
-  //     return cartItems;
-  //   }
-  // }
-
   updateComments = (id) => {
     const comments = JSON.parse(localStorage.getItem([id]));
     this.setState({ comments });
   }
 
   render() {
-    const { product, cartItems, comments } = this.state;
+    const { product, cartItems, comments, shipping } = this.state;
     const { title, thumbnail, price } = product;
     return (
       <div>
@@ -67,6 +61,8 @@ export default class Details extends React.Component {
               Valor: R$
               {price}
             </span>
+            {shipping && (
+              <p data-testid="free-shipping">Frete Grátis</p>)}
             <ButonAddCart
               name={ title }
               price={ price }
