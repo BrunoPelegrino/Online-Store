@@ -17,7 +17,9 @@ export default class Cart extends React.Component {
     const { name } = event.target;
     const { cartItems } = this.state;
     const newQtd = cartItems.find((item) => item.name === name);
-    newQtd.quantify += 1;
+    console.log(newQtd.availableQuantity);
+    if (newQtd.quantify + 1 <= newQtd.availableQuantity) newQtd.quantify += 1;
+
     this.setState({ cartItems });
     saveCartItem(cartItems);
   }

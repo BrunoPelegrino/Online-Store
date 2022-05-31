@@ -23,6 +23,7 @@ export default class Details extends React.Component {
     this.setState({
       product,
     });
+    console.log(product.available_quantity);
   }
 
   getCartLength = () => {
@@ -69,6 +70,7 @@ export default class Details extends React.Component {
             <ButonAddCart
               name={ title }
               price={ price }
+              available_quantity={ product.available_quantity }
               thumbnail={ thumbnail }
               rotuloId="product-detail-add-to-cart"
               getCartLength={ this.getCartLength }
