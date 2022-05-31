@@ -77,6 +77,7 @@ export default class Cart extends React.Component {
               ))}
             </div>
           )}
+        <Link to="/checkout" data-testid="checkout-products">Checkout</Link>
       </div>
     );
   }
